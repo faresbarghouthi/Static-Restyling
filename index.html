@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Static Restyling — Premium Auto Detailing · Snellville, GA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  /* ─── Reset & Base ─────────────────────────────────────────────── */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --black:#0a0a0a;
+    --black2:#111;
+    --carbon:#1a1a1a;
+    --zinc:#242424;
+    --zinc2:#2e2e2e;
+    --yellow:#f5c518;
+    --yellow2:#ffd23f;
+    --yellow-dim:#c9a010;
+    --white:#f8f8f4;
+    --gray:#888;
+    --gray2:#555;
+    --font-display:'Bebas Neue',sans-serif;
+    --font-cond:'Barlow Condensed',sans-serif;
+    --font-body:'Barlow',sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--yellow);color:var(--black)}
+  a{color:inherit;text-decoration:none}
+
+  /* ─── Scrollbar ─────────────────────────────────────────────────── */
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-track{background:var(--black2)}
+  ::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:2px}
+
+  /* ─── Nav ───────────────────────────────────────────────────────── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 3rem;
+    height:64px;
+    background:rgba(10,10,10,0.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(245,197,24,0.15);
+  }
+  .nav-logo{
+    font-family:var(--font-display);
+    font-size:22px;
+    letter-spacing:2px;
+    color:var(--white);
+  }
+  .nav-logo span{color:var(--yellow)}
+  .nav-links{display:flex;gap:2rem;align-items:center}
+  .nav-links a{
+    font-family:var(--font-cond);
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gray);
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--yellow)}
+  .nav-cta{
+    background:var(--yellow);
+    color:var(--black)!important;
+    font-weight:700;
+    padding:8px 20px;
+    letter-spacing:2px;
+    clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--yellow2)!important}
+
+  /* ─── Hero ──────────────────────────────────────────────────────── */
+  .hero{
+    position:relative;
+    height:100vh;
+    min-height:640px;
+    display:flex;align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.85) 100%),
+      url('https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1600&q=80') center/cover no-repeat;
+    transform:scale(1.04);
+    animation:heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom{from{transform:scale(1.04)}to{transform:scale(1)}}
+  .hero-stripe{
+    position:absolute;top:0;left:0;
+    width:6px;height:100%;
+    background:var(--yellow);
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    padding:0 3rem 5rem;
+    max-width:820px;
+  }
+  .hero-eyebrow{
+    font-family:var(--font-cond);
+    font-size:12px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:var(--yellow);
+    margin-bottom:16px;
+    opacity:0;animation:fadeUp .6s .3s forwards;
+  }
+  .hero-title{
+    font-family:var(--font-display);
+    font-size:clamp(60px,10vw,110px);
+    line-height:.92;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--white);
+    opacity:0;animation:fadeUp .6s .5s forwards;
+  }
+  .hero-title .accent{color:var(--yellow)}
+  .hero-sub{
+    font-family:var(--font-cond);
+    font-size:18px;
+    font-weight:400;
+    color:rgba(248,248,244,.65);
+    letter-spacing:1px;
+    margin-top:20px;
+    max-width:480px;
+    opacity:0;animation:fadeUp .6s .7s forwards;
+  }
+  .hero-actions{
+    display:flex;gap:16px;margin-top:32px;flex-wrap:wrap;
+    opacity:0;animation:fadeUp .6s .9s forwards;
+  }
+  .btn-primary{
+    font-family:var(--font-cond);
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    background:var(--yellow);
+    color:var(--black);
+    padding:14px 36px;
+    clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+    transition:background .2s,transform .15s;
+    cursor:pointer;border:none;
+  }
+  .btn-primary:hover{background:var(--yellow2);transform:translateY(-2px)}
+  .btn-outline{
+    font-family:var(--font-cond);
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    background:transparent;
+    color:var(--white);
+    padding:13px 34px;
+    border:1px solid rgba(248,248,244,.3);
+    transition:border-color .2s,color .2s;
+    cursor:pointer;
+  }
+  .btn-outline:hover{border-color:var(--yellow);color:var(--yellow)}
+  .hero-badge{
+    position:absolute;right:3rem;bottom:5rem;z-index:2;
+    width:100px;height:100px;
+    border-radius:50%;
+    border:2px solid var(--yellow);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    background:rgba(10,10,10,0.7);
+    opacity:0;animation:fadeIn 1s 1.2s forwards;
+  }
+  .hero-badge .b1{font-family:var(--font-display);font-size:28px;color:var(--yellow);line-height:1}
+  .hero-badge .b2{font-family:var(--font-cond);font-size:9px;letter-spacing:2px;color:var(--gray);margin-top:2px}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+  /* ─── Stats Bar ─────────────────────────────────────────────────── */
+  .stats-bar{
+    background:var(--yellow);
+    padding:18px 3rem;
+    display:flex;gap:0;
+    overflow:hidden;
+  }
+  .stat{
+    flex:1;
+    text-align:center;
+    border-right:1px solid rgba(10,10,10,0.15);
+  }
+  .stat:last-child{border-right:none}
+  .stat-num{
+    font-family:var(--font-display);
+    font-size:30px;
+    color:var(--black);
+    line-height:1;
+  }
+  .stat-lbl{
+    font-family:var(--font-cond);
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:rgba(10,10,10,0.55);
+    margin-top:2px;
+  }
+
+  /* ─── Section shared ────────────────────────────────────────────── */
+  section{padding:80px 3rem}
+  .section-tag{
+    font-family:var(--font-cond);
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--yellow);
+    margin-bottom:12px;
+  }
+  .section-title{
+    font-family:var(--font-display);
+    font-size:clamp(36px,5vw,58px);
+    letter-spacing:2px;
+    text-transform:uppercase;
+    line-height:1;
+    color:var(--white);
+    margin-bottom:8px;
+  }
+  .section-sub{
+    font-size:15px;
+    color:var(--gray);
+    max-width:500px;
+    margin-bottom:44px;
+  }
+
+  /* ─── Gallery ───────────────────────────────────────────────────── */
+  #gallery{background:var(--black2)}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    grid-template-rows:240px 240px;
+    gap:6px;
+  }
+  .gcard{
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+  }
+  .gcard:first-child{grid-row:1/3}
+  .gcard img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform .5s;
+    filter:brightness(.85);
+  }
+  .gcard:hover img{transform:scale(1.07);filter:brightness(1)}
+  .gcard-label{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:14px 16px;
+    background:linear-gradient(transparent,rgba(0,0,0,.8));
+    font-family:var(--font-cond);
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--white);
+    opacity:0;transition:opacity .3s;
+  }
+  .gcard:hover .gcard-label{opacity:1}
+
+  /* ─── Services / Pricing ────────────────────────────────────────── */
+  #pricing{background:var(--carbon)}
+  .vehicle-tabs{
+    display:flex;gap:8px;margin-bottom:36px;flex-wrap:wrap;
+  }
+  .vtab{
+    font-family:var(--font-cond);
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    padding:8px 20px;
+    border:1px solid var(--zinc2);
+    color:var(--gray);
+    background:transparent;
+    cursor:pointer;
+    transition:all .2s;
+    clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  }
+  .vtab:hover{border-color:var(--yellow);color:var(--yellow)}
+  .vtab.active{background:var(--yellow);color:var(--black);border-color:var(--yellow);font-weight:700}
+
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:2px;
+  }
+  .svc-card{
+    background:var(--zinc);
+    padding:24px 26px;
+    border-left:3px solid transparent;
+    transition:border-color .2s,background .2s;
+    position:relative;overflow:hidden;
+  }
+  .svc-card::before{
+    content:'';
+    position:absolute;top:0;right:0;
+    width:60px;height:60px;
+    background:var(--yellow);
+    opacity:.04;
+    clip-path:polygon(100% 0,0 0,100% 100%);
+    transition:opacity .3s;
+  }
+  .svc-card:hover{border-left-color:var(--yellow);background:var(--zinc2)}
+  .svc-card:hover::before{opacity:.08}
+  .svc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+  .svc-name{
+    font-family:var(--font-cond);
+    font-size:17px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:var(--white);
+  }
+  .svc-price{
+    font-family:var(--font-display);
+    font-size:22px;
+    color:var(--yellow);
+    white-space:nowrap;
+    margin-left:12px;
+  }
+  .svc-sub{font-size:13px;color:var(--gray);line-height:1.5}
+  .svc-badge{
+    display:inline-block;
+    font-family:var(--font-cond);
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:3px 10px;
+    background:rgba(245,197,24,.15);
+    color:var(--yellow);
+    border:1px solid rgba(245,197,24,.3);
+    margin-bottom:8px;
+  }
+
+  /* PPF Cards */
+  .ppf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}
+  .ppf-card{
+    background:var(--zinc2);
+    padding:20px;
+    border:1px solid var(--zinc2);
+    position:relative;
+    transition:border-color .2s;
+  }
+  .ppf-card.featured{border-color:var(--yellow)}
+  .ppf-card:hover{border-color:var(--yellow-dim)}
+  .ppf-tier{font-family:var(--font-cond);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
+  .ppf-name{font-family:var(--font-cond);font-size:16px;font-weight:700;color:var(--white);margin-bottom:14px}
+  .ppf-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+  .ppf-row:last-of-type{border:none}
+  .ppf-row span:first-child{color:var(--gray)}
+  .ppf-row span:last-child{font-weight:600;color:var(--white)}
+  .ppf-badge{
+    position:absolute;top:-1px;right:16px;
+    font-family:var(--font-cond);font-size:9px;letter-spacing:2px;
+    text-transform:uppercase;padding:3px 10px;
+    background:var(--yellow);color:var(--black);font-weight:700;
+  }
+  .ppf-note{font-size:11px;color:var(--gray);margin-top:8px}
+
+  /* Tint table */
+  .tint-table{width:100%;border-collapse:collapse;margin-top:4px}
+  .tint-table th{
+    font-family:var(--font-cond);font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;color:var(--gray);
+    padding:10px 14px;text-align:left;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .tint-table td{
+    padding:11px 14px;font-size:14px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+  }
+  .tint-table tr:last-child td{border:none}
+  .tint-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  .tint-price{font-weight:600;color:var(--yellow)}
+
+  /* Section divider label */
+  .price-section-label{
+    font-family:var(--font-display);
+    font-size:13px;
+    letter-spacing:4px;
+    color:var(--yellow);
+    text-transform:uppercase;
+    margin:36px 0 16px;
+    padding-bottom:8px;
+    border-bottom:1px solid rgba(245,197,24,.2);
+  }
+  .price-section-label:first-of-type{margin-top:0}
+
+  /* Exotic banner */
+  .exotic-banner{
+    display:flex;align-items:center;gap:16px;
+    padding:16px 20px;
+    background:rgba(245,197,24,.08);
+    border:1px solid rgba(245,197,24,.25);
+    margin-bottom:32px;
+  }
+  .exotic-star{font-size:22px;color:var(--yellow)}
+  .exotic-title{font-family:var(--font-cond);font-size:15px;font-weight:700;color:var(--yellow);margin-bottom:2px}
+  .exotic-desc{font-size:12px;color:rgba(245,197,24,.65)}
+
+  /* ─── About / Shop ───────────────────────────────────────────────── */
+  #about{
+    background:var(--black2);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    padding:0;
+  }
+  .about-img{
+    position:relative;
+    overflow:hidden;
+    min-height:500px;
+  }
+  .about-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.75)}
+  .about-img::after{
+    content:'';
+    position:absolute;inset:0;
+    background:linear-gradient(to right,transparent 60%,var(--black2));
+  }
+  .about-content{
+    display:flex;flex-direction:column;justify-content:center;
+    padding:80px 4rem 80px 3rem;
+  }
+  .about-content p{color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:20px}
+  .about-list{list-style:none;margin-bottom:28px}
+  .about-list li{
+    font-family:var(--font-cond);
+    font-size:15px;
+    letter-spacing:1px;
+    color:var(--white);
+    padding:8px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    display:flex;align-items:center;gap:10px;
+  }
+  .about-list li::before{content:'';width:6px;height:6px;background:var(--yellow);flex-shrink:0}
+
+  /* ─── Contact ────────────────────────────────────────────────────── */
+  #contact{background:var(--black)}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+  }
+  .contact-info{display:flex;flex-direction:column;gap:24px}
+  .contact-item{display:flex;gap:16px;align-items:flex-start}
+  .contact-icon{
+    width:40px;height:40px;
+    background:rgba(245,197,24,.1);
+    border:1px solid rgba(245,197,24,.2);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    font-size:16px;
+  }
+  .contact-label{font-family:var(--font-cond);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+  .contact-value{font-size:15px;color:var(--white);font-weight:500}
+  .contact-value a{color:var(--yellow);transition:opacity .2s}
+  .contact-value a:hover{opacity:.75}
+
+  /* ─── Quote Form ────────────────────────────────────────────────── */
+  .quote-form{display:flex;flex-direction:column;gap:20px}
+  .qform-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .qform-field{display:flex;flex-direction:column;gap:8px}
+  .qform-field label{
+    font-family:var(--font-cond);
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--yellow);
+    font-weight:600;
+  }
+  .qform-field input,
+  .qform-field select,
+  .qform-field textarea{
+    background:var(--zinc);
+    border:1px solid var(--zinc2);
+    border-left:2px solid var(--yellow);
+    color:var(--white);
+    padding:14px 16px;
+    font-family:var(--font-body);
+    font-size:15px;
+    line-height:1.5;
+    transition:border-color .2s, background .2s;
+    outline:none;
+    resize:none;
+    width:100%;
+    -webkit-appearance:none;
+  }
+  .qform-field input::placeholder,
+  .qform-field textarea::placeholder{color:var(--gray2)}
+  .qform-field input:focus,
+  .qform-field select:focus,
+  .qform-field textarea:focus{
+    border-color:var(--yellow);
+    background:var(--carbon);
+  }
+  .qform-field select{
+    cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23f5c518' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    padding-right:36px;
+  }
+  .qform-field select option{background:var(--zinc);color:var(--white)}
+  .qform-submit{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--yellow);
+    color:var(--black);
+    font-family:var(--font-cond);
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    padding:16px 36px;
+    border:none;
+    cursor:pointer;
+    clip-path:polygon(0 0,calc(100% - 12px) 0,100% 100%,0 100%);
+    transition:background .2s, transform .15s;
+    align-self:flex-start;
+    margin-top:4px;
+  }
+  .qform-submit:hover{background:var(--yellow2);transform:translateY(-2px)}
+  .qform-success{
+    display:none;
+    background:rgba(245,197,24,.08);
+    border:1px solid rgba(245,197,24,.3);
+    border-left:3px solid var(--yellow);
+    padding:20px 24px;
+    font-family:var(--font-cond);
+    font-size:16px;
+    letter-spacing:1px;
+    color:var(--yellow);
+  }
+
+  /* ─── Footer ─────────────────────────────────────────────────────── */
+  footer{
+    background:var(--black2);
+    border-top:1px solid rgba(245,197,24,.1);
+    padding:28px 3rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-logo{font-family:var(--font-display);font-size:18px;letter-spacing:2px}
+  .footer-logo span{color:var(--yellow)}
+  .footer-copy{font-size:12px;color:var(--gray)}
+  .footer-links{display:flex;gap:20px}
+  .footer-links a{font-family:var(--font-cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);transition:color .2s}
+  .footer-links a:hover{color:var(--yellow)}
+
+  /* ─── Diagonal accent ───────────────────────────────────────────── */
+  .angle-divider{
+    height:48px;
+    background:var(--yellow);
+    clip-path:polygon(0 0,100% 0,100% 100%,0 40%);
+  }
+  .angle-divider.inv{clip-path:polygon(0 0,100% 40%,100% 100%,0 100%);background:var(--carbon)}
+
+  /* ─── Scroll animations ─────────────────────────────────────────── */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ─── Mobile ─────────────────────────────────────────────────────── */
+  @media(max-width:768px){
+    nav{padding:0 1.5rem}
+    .nav-links{display:none}
+    section{padding:60px 1.5rem}
+    .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+    .gcard:first-child{grid-row:auto}
+    #about{grid-template-columns:1fr}
+    .about-img{min-height:260px}
+    .contact-grid{grid-template-columns:1fr}
+    .qform-row{grid-template-columns:1fr}
+    .ppf-grid{grid-template-columns:1fr}
+    footer{flex-direction:column;text-align:center}
+    .hero-badge{display:none}
+    .stats-bar{padding:16px 1.5rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── Nav ──────────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">STATIC <span>RESTYLING</span></div>
+  <div class="nav-links">
+    <a href="#gallery">Gallery</a>
+    <a href="#pricing">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#booking">Book Now</a>
+    <a href="tel:4704928179" class="nav-cta">470-492-8179</a>
+  </div>
+</nav>
+
+<!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Snellville, GA · Premium Auto Styling</div>
+    <h1 class="hero-title">RESTYLE<br>YOUR <span class="accent">RIDE.</span></h1>
+    <p class="hero-sub">Starlight headliners, full wraps, PPF, tint, ambient lighting — every detail, obsessed over.</p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">View Pricing</a>
+      <a href="#booking" class="btn-outline">Schedule Appointment</a>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <div class="b1">5★</div>
+    <div class="b2">Rated Shop</div>
+  </div>
+</section>
+
+<!-- ─── Stats ─────────────────────────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">500+</div><div class="stat-lbl">Cars Completed</div></div>
+  <div class="stat"><div class="stat-num">8+</div><div class="stat-lbl">Years Experience</div></div>
+  <div class="stat"><div class="stat-num">15+</div><div class="stat-lbl">Services Offered</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Satisfaction</div></div>
+</div>
+
+<!-- ─── Gallery ──────────────────────────────────────────────────────────── -->
+<section id="gallery">
+  <div class="section-tag reveal">Our Work</div>
+  <h2 class="section-title reveal">THE CRAFT.</h2>
+  <p class="section-sub reveal">Every vehicle that leaves our shop is a statement.</p>
+  <div class="gallery-grid reveal">
+    <div class="gcard">
+      <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=900&q=80" alt="Luxury interior detailing"/>
+      <div class="gcard-label">Interior Restyling</div>
+    </div>
+    <div class="gcard">
+      <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=700&q=80" alt="Performance car wrap"/>
+      <div class="gcard-label">Full Wrap</div>
+    </div>
+    <div class="gcard">
+      <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=700&q=80" alt="Auto detail shop"/>
+      <div class="gcard-label">Professional Shop</div>
+    </div>
+    <div class="gcard">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Car paint protection"/>
+      <div class="gcard-label">Paint Protection</div>
+    </div>
+    <div class="gcard">
+      <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=700&q=80" alt="Luxury car"/>
+      <div class="gcard-label">Exotic Styling</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Pricing ───────────────────────────────────────────────────────────── -->
+<section id="pricing">
+  <div class="section-tag reveal">Transparent Pricing</div>
+  <h2 class="section-title reveal">SERVICES &amp;<br>PRICING.</h2>
+  <p class="section-sub reveal">Starting prices shown. Final quote based on vehicle size and condition.</p>
+
+  <div class="vehicle-tabs reveal">
+    <button class="vtab active" onclick="filterTab('all',this)">All Vehicles</button>
+    <button class="vtab" onclick="filterTab('coupe',this)">Coupe / Sport</button>
+    <button class="vtab" onclick="filterTab('sedan',this)">Sedan</button>
+    <button class="vtab" onclick="filterTab('suv',this)">SUV</button>
+    <button class="vtab" onclick="filterTab('limo',this)">Limo / Escalade</button>
+    <button class="vtab" onclick="filterTab('utility',this)">Utility / Truck</button>
+  </div>
+
+  <div class="exotic-banner reveal">
+    <div class="exotic-star">★</div>
+    <div>
+      <div class="exotic-title">Exotic &amp; Supercar Surcharge — Lamborghini · Ferrari · McLaren · Rolls-Royce · Bentley · Bugatti &amp; More</div>
+      <div class="exotic-desc">All exotic vehicle pricing is quoted individually. Premium rates apply — contact us for a custom estimate.</div>
+    </div>
+  </div>
+
+  <!-- Starlight -->
+  <div class="price-section-label" id="lbl-starlight">★ Starlight Headliner</div>
+  <div class="services-grid" id="grid-starlight">
+    <div class="svc-card" data-tab="sedan coupe">
+      <div class="svc-header">
+        <div class="svc-name">Sedan / Coupe</div>
+        <div class="svc-price">$649<sup style="font-size:12px">.99</sup></div>
+      </div>
+      <div class="svc-sub">650–750 stars · carbon fiber &amp; LED options · shooting star upgrade available</div>
+    </div>
+    <div class="svc-card" data-tab="suv">
+      <div class="svc-header">
+        <div class="svc-name">SUV</div>
+        <div class="svc-price">$849<sup style="font-size:12px">.99</sup></div>
+      </div>
+      <div class="svc-sub">~850 stars · full ceiling coverage · shooting star upgrade available</div>
+    </div>
+    <div class="svc-card" data-tab="limo">
+      <div class="svc-badge">★ Limo Package</div>
+      <div class="svc-header">
+        <div class="svc-name">Limo / Escalade</div>
+        <div class="svc-price" style="font-size:16px">From $1,199<sup style="font-size:10px">.99</sup></div>
+      </div>
+      <div class="svc-sub">1,200–2,000 stars · full ceiling · up to $1,999.99 · limo package rate</div>
+    </div>
+  </div>
+
+  <!-- Ambient -->
+  <div class="price-section-label" id="lbl-ambient">Ambient LED Lighting</div>
+  <div class="services-grid" id="grid-ambient">
+    <div class="svc-card" data-tab="sedan coupe suv">
+      <div class="svc-header">
+        <div class="svc-name">Sedan / Coupe / SUV</div>
+        <div class="svc-price">$449<sup style="font-size:12px">.99</sup></div>
+      </div>
+      <div class="svc-sub">Full interior ambient LED install · body kit LED integration</div>
+    </div>
+    <div class="svc-card" data-tab="limo">
+      <div class="svc-badge">★ Limo Package</div>
+      <div class="svc-header">
+        <div class="svc-name">Limo / Escalade</div>
+        <div class="svc-price">$649<sup style="font-size:12px">.99</sup></div>
+      </div>
+      <div class="svc-sub">Extended roof + door ambient system · premium LED array</div>
+    </div>
+  </div>
+
+  <!-- Tint -->
+  <div class="price-section-label" id="lbl-tint">Window Tint</div>
+  <div id="grid-tint" class="reveal">
+    <table class="tint-table">
+      <thead><tr>
+        <th>Vehicle</th><th>Carbon Tint (All Around)</th><th>Ceramic Tint (All Around)</th>
+      </tr></thead>
+      <tbody>
+        <tr data-tab="coupe"><td>Coupe / Sport</td><td class="tint-price">$159.99</td><td class="tint-price">$249.99</td></tr>
+        <tr data-tab="sedan"><td>Sedan</td><td class="tint-price">$219.99</td><td class="tint-price">$349.99</td></tr>
+        <tr data-tab="suv"><td>SUV</td><td class="tint-price">$279.99</td><td class="tint-price">$449.99</td></tr>
+        <tr data-tab="limo"><td>Limo / Escalade</td><td class="tint-price">—</td><td class="tint-price">$649.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Wrap -->
+  <div class="price-section-label" id="lbl-wrap">Full Vehicle Wrap</div>
+  <div class="services-grid" id="grid-wrap">
+    <div class="svc-card" data-tab="coupe"><div class="svc-header"><div class="svc-name">Coupe / Sport</div><div class="svc-price" style="font-size:16px">From $1,599<sup style="font-size:10px">.99</sup></div></div><div class="svc-sub">Gloss or satin finish · full body wrap</div></div>
+    <div class="svc-card" data-tab="sedan"><div class="svc-header"><div class="svc-name">Sedan</div><div class="svc-price" style="font-size:16px">From $2,599<sup style="font-size:10px">.99</sup></div></div><div class="svc-sub">Gloss or satin finish · full body wrap</div></div>
+    <div class="svc-card" data-tab="suv"><div class="svc-header"><div class="svc-name">SUV</div><div class="svc-price" style="font-size:16px">From $3,199<sup style="font-size:10px">.99</sup></div></div><div class="svc-sub">Gloss or satin finish · full body wrap</div></div>
+    <div class="svc-card" data-tab="limo"><div class="svc-badge">★ Limo Package</div><div class="svc-header"><div class="svc-name">Limo / Escalade</div><div class="svc-price" style="font-size:16px">From $3,499<sup style="font-size:10px">.99</sup></div></div><div class="svc-sub">Gloss or satin · full body limo package</div></div>
+    <div class="svc-card" data-tab="utility"><div class="svc-header"><div class="svc-name">Utility / Truck — Partial</div><div class="svc-price" style="font-size:16px">From $799<sup style="font-size:10px">.99</sup></div></div><div class="svc-sub">Accent, hood, roof — starting price</div></div>
+    <div class="svc-card" data-tab="utility"><div class="svc-header"><div class="svc-name">Utility / Truck — Full</div><div class="svc-price" style="font-size:16px">From $2,999<sup style="font-size:10px">.99</sup></div></div><div class="svc-sub">Full body coverage · gloss or satin</div></div>
+  </div>
+
+  <!-- PPF -->
+  <div class="price-section-label" id="lbl-ppf">PPF — Paint Protection Film</div>
+  <div class="ppf-grid reveal" id="grid-ppf">
+    <div class="ppf-card">
+      <div class="ppf-tier">Tier 1</div>
+      <div class="ppf-name">Essential Front</div>
+      <div class="ppf-row"><span>Sedan</span><span>$799.99</span></div>
+      <div class="ppf-row"><span>SUV</span><span>$999.99</span></div>
+      <div class="ppf-row"><span>Limo / Escalade</span><span>$1,199.99</span></div>
+      <div class="ppf-note">Bumper · headlights · partial hood</div>
+    </div>
+    <div class="ppf-card featured">
+      <div class="ppf-badge">Most Popular</div>
+      <div class="ppf-tier">Tier 2</div>
+      <div class="ppf-name">Full Front</div>
+      <div class="ppf-row"><span>Sedan</span><span>$1,499.99</span></div>
+      <div class="ppf-row"><span>SUV</span><span>$1,799.99</span></div>
+      <div class="ppf-row"><span>Limo / Escalade</span><span>$2,199.99</span></div>
+      <div class="ppf-note">Hood · fenders · bumper · mirrors · headlights</div>
+    </div>
+    <div class="ppf-card">
+      <div class="ppf-tier">Tier 3</div>
+      <div class="ppf-name">Full Body</div>
+      <div class="ppf-row"><span>Sedan</span><span>$2,999.99</span></div>
+      <div class="ppf-row"><span>SUV</span><span>$3,799.99</span></div>
+      <div class="ppf-row"><span>Limo / Escalade</span><span>$4,999.99</span></div>
+      <div class="ppf-note">All painted surfaces · maximum protection</div>
+    </div>
+  </div>
+
+  <!-- Interior / Cosmetic / Maintenance -->
+  <div class="price-section-label">Interior · Cosmetic · Maintenance</div>
+  <div class="services-grid" id="grid-other">
+    <div class="svc-card" data-tab="all"><div class="svc-header"><div class="svc-name">Full Interior Swap</div><div class="svc-price" style="font-size:16px">From $1,999<sup style="font-size:10px">.99</sup></div></div><div class="svc-sub">Complete interior overhaul · all vehicle types</div></div>
+    <div class="svc-card" data-tab="all"><div class="svc-header"><div class="svc-name">Alcantara / Suede Liner</div><div class="svc-price" style="font-size:16px">From $599<sup style="font-size:10px">.99</sup></div></div><div class="svc-sub">Luxury suede interior lining install</div></div>
+    <div class="svc-card" data-tab="all"><div class="svc-header"><div class="svc-name">Chrome Delete</div><div class="svc-price">$349<sup style="font-size:12px">.99</sup></div></div><div class="svc-sub">Any vehicle · full chrome blackout</div></div>
+    <div class="svc-card" data-tab="all"><div class="svc-header"><div class="svc-name">Minor Cosmetic Changes</div><div class="svc-price">$249<sup style="font-size:12px">.99</sup></div></div><div class="svc-sub">Trim accents, badges, small body detail</div></div>
+    <div class="svc-card" data-tab="all"><div class="svc-header"><div class="svc-name">Brake Service / Oil Change</div><div class="svc-price" style="font-size:14px;color:var(--gray)">Custom</div></div><div class="svc-sub">Brake fluid flush · conventional or synthetic oil</div></div>
+    <div class="svc-card" data-tab="all"><div class="svc-header"><div class="svc-name">Tune-Up</div><div class="svc-price" style="font-size:14px;color:var(--gray)">Custom</div></div><div class="svc-sub">Spark plugs · filters · diagnostics</div></div>
+  </div>
+</section>
+
+<!-- ─── Angle divider ─────────────────────────────────────────────────────── -->
+<div class="angle-divider"></div>
+
+<!-- ─── About ─────────────────────────────────────────────────────────────── -->
+<section id="about" style="padding:0">
+  <div class="about-img">
+    <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=900&q=80" alt="Professional detail shop"/>
+  </div>
+  <div class="about-content">
+    <div class="section-tag reveal">Who We Are</div>
+    <h2 class="section-title reveal">THE SHOP<br>BEHIND THE<br><span style="color:var(--yellow)">CRAFT.</span></h2>
+    <p class="reveal">Static Restyling is Snellville's premier auto styling destination. We don't just detail cars — we transform them. From a custom starlight headliner to a full paint protection film wrap, every job leaves our shop looking like a showroom build.</p>
+    <ul class="about-list reveal">
+      <li>Certified PPF &amp; Wrap Installers</li>
+      <li>Premium Materials Only — No Shortcuts</li>
+      <li>All Vehicle Types Welcome</li>
+      <li>Free Estimates · Same-Day Quotes</li>
+      <li>Serving Metro Atlanta &amp; Beyond</li>
+    </ul>
+    <a href="#contact" class="btn-primary reveal" style="align-self:flex-start">Book a Consultation</a>
+  </div>
+</section>
+
+<!-- ─── Contact ───────────────────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="section-tag reveal">Get In Touch</div>
+  <h2 class="section-title reveal">REQUEST A<br>QUOTE.</h2>
+  <p class="section-sub reveal">We'll get back to you within 24 hours with a custom estimate.</p>
+
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Address</div>
+          <div class="contact-value">2121 Hewatt Rd<br>Snellville, GA 30078</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value"><a href="tel:4704928179">470-492-8179</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <div class="contact-label">Website</div>
+          <div class="contact-value"><a href="http://www.staticrestyling.com" target="_blank">www.staticrestyling.com</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-label">Hours</div>
+          <div class="contact-value">Mon–Fri: 9AM–6PM<br>Sat: 10AM–4PM</div>
+        </div>
+      </div>
+      <div style="margin-top:8px">
+        <iframe
+          src="https://maps.google.com/maps?q=2121+Hewatt+Rd+Snellville+GA+30078&output=embed"
+          width="100%" height="200" style="border:1px solid var(--zinc2);filter:grayscale(1) invert(0.9) contrast(1.1)" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="quote-form reveal" id="quoteForm">
+      <div id="formSuccess" class="qform-success">
+        ✓ &nbsp;Request received — we'll have your quote within 24 hours.
+      </div>
+      <form action="https://formsubmit.co/alnafaiee@staticrestyling.com" method="POST" onsubmit="submitQuote(event)">
+        <input type="hidden" name="_subject" value="New Quote Request — Static Restyling"/>
+        <input type="hidden" name="_captcha" value="false"/>
+        <input type="hidden" name="_template" value="table"/>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="qform-row">
+            <div class="qform-field">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="First Name" placeholder="John" required/>
+            </div>
+            <div class="qform-field">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="Last Name" placeholder="Doe" required/>
+            </div>
+          </div>
+          <div class="qform-row">
+            <div class="qform-field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="Phone" placeholder="470-555-0000" required/>
+            </div>
+            <div class="qform-field">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="Email" placeholder="you@email.com"/>
+            </div>
+          </div>
+          <div class="qform-row">
+            <div class="qform-field">
+              <label for="vehicle">Vehicle Type</label>
+              <select id="vehicle" name="Vehicle Type" required>
+                <option value="" disabled selected>Select vehicle...</option>
+                <option>Coupe / Sport</option>
+                <option>Sedan</option>
+                <option>SUV</option>
+                <option>Limo / Escalade</option>
+                <option>Utility / Truck</option>
+                <option>Exotic / Supercar</option>
+              </select>
+            </div>
+            <div class="qform-field">
+              <label for="service">Service Interested In</label>
+              <select id="service" name="Service" required>
+                <option value="" disabled selected>Select service...</option>
+                <option>Starlight Headliner</option>
+                <option>Ambient LED Lighting</option>
+                <option>Window Tint (Carbon)</option>
+                <option>Ceramic Tint</option>
+                <option>Full Vehicle Wrap</option>
+                <option>Paint Protection Film (PPF)</option>
+                <option>Chrome Delete</option>
+                <option>Interior Swap / Alcantara</option>
+                <option>Multiple Services</option>
+              </select>
+            </div>
+          </div>
+          <div class="qform-field">
+            <label for="details">Vehicle & Project Details</label>
+            <textarea id="details" name="Details" rows="4" placeholder="Year, make, model — and anything specific about your project..."></textarea>
+          </div>
+          <button type="submit" class="qform-submit">Send Quote Request ›</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Booking ───────────────────────────────────────────────────────────── -->
+<section id="booking" style="background:var(--carbon);padding:80px 3rem">
+  <div class="section-tag reveal">Book Online</div>
+  <h2 class="section-title reveal">SCHEDULE YOUR<br><span style="color:var(--yellow)">CONSULTATION.</span></h2>
+  <p class="section-sub reveal">Pick a time that works for you. In-shop consultations are free — no pressure, no obligation.</p>
+  <div class="calendly-inline-widget reveal" data-url="https://calendly.com/faresbargh-21/in-shop-consultation?background_color=000000&text_color=ffffff&primary_color=f5c518" style="min-width:320px;height:700px;margin-top:40px"></div>
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</section>
+
+<!-- ─── Footer ────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">STATIC <span>RESTYLING</span></div>
+  <div class="footer-copy">© 2025 Static Restyling · 2121 Hewatt Rd, Snellville GA 30078</div>
+  <div class="footer-links">
+    <a href="#home">Top</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+    <a href="http://www.staticrestyling.com" target="_blank">Website</a>
+  </div>
+</footer>
+
+<script>
+// ── Vehicle tab filter ─────────────────────────────────────────────────────
+function filterTab(tab, btn) {
+  document.querySelectorAll('.vtab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Service cards
+  document.querySelectorAll('[data-tab]').forEach(el => {
+    if (el.tagName === 'TR') {
+      const tabs = el.getAttribute('data-tab').split(' ');
+      el.style.display = (tab === 'all' || tabs.includes(tab)) ? '' : 'none';
+    } else {
+      const tabs = el.getAttribute('data-tab').split(' ');
+      el.style.display = (tab === 'all' || tabs.includes(tab) || tabs.includes('all')) ? '' : 'none';
+    }
+  });
+
+  // Hide section labels if no visible cards
+  ['starlight','ambient','wrap'].forEach(id => {
+    const grid = document.getElementById('grid-' + id);
+    if (!grid) return;
+    const visible = [...grid.querySelectorAll('[data-tab]')].some(c => c.style.display !== 'none');
+    const lbl = document.getElementById('lbl-' + id);
+    if (lbl) lbl.style.display = visible ? '' : 'none';
+    grid.style.display = visible ? '' : 'none';
+  });
+
+  // PPF always visible
+  const ppfLbl = document.getElementById('lbl-ppf');
+  const ppfGrid = document.getElementById('grid-ppf');
+  if (tab === 'utility' || tab === 'coupe') {
+    // hide PPF section for vehicle types where it's not directly listed
+  }
+  // tint
+  const tintLbl = document.getElementById('lbl-tint');
+  const tintGrid = document.getElementById('grid-tint');
+  const tintRows = tintGrid.querySelectorAll('[data-tab]');
+  const tintVisible = [...tintRows].some(r => r.style.display !== 'none');
+  tintLbl.style.display = tintVisible ? '' : 'none';
+  tintGrid.style.display = tintVisible ? '' : 'none';
+}
+
+// ── Quote form submit ──────────────────────────────────────────────────────
+function submitQuote(e) {
+  const form = e.target;
+  const action = form.action;
+  // If email placeholder not replaced, show success UI only (dev mode)
+  if (action.includes('YOUR_EMAIL_HERE')) {
+    e.preventDefault();
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    return;
+  }
+  // Real submission — let form POST naturally but show success after
+  e.preventDefault();
+  const data = new FormData(form);
+  fetch(action, { method:'POST', body:data, headers:{'Accept':'application/json'} })
+    .then(() => {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    })
+    .catch(() => {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    });
+}
+
+// ── Scroll reveal ──────────────────────────────────────────────────────────
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
